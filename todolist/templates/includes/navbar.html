@@ -1,7 +1,7 @@
 <nav>
     <div>
-        <a href="/">Homepage</a>
-        <a href="/signin">Sign In</a>
-        <a href="/signup">Sign Up</a>
+        <a href="{{ url_for('main.index') }}">Homepage</a>
+        <a href="{{ url_for('auth.signin') }}">Sign In</a>
+        <a href="{{ url_for('auth.signup') }}">Sign Up</a>
     </div>
 </nav>
