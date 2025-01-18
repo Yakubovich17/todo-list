@@ -6,6 +6,8 @@
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
+        {% include "includes/navbar.html" %}
+        
         {% block content %}{% endblock content %}
     </body>
 </html>
