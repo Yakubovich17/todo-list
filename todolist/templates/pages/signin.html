@@ -8,16 +8,15 @@
     <div>
         <div>
             <form method="post" action="{{ url_for('auth.signin') }}">
-                
                 {{ form.hidden_tag() }}
                 
+                <h4>Sign In</h4>
+                
                 <div>
-                    {{ form.username.label() }}
-                    {{ form.username() }}
+                    {{ form.username(placeholder=form.username.label.text) }}
                 </div>
                 <div>
-                    {{ form.password.label() }}
-                    {{ form.password(type="password") }}
+                    {{ form.password(placeholder=form.password.label.text) }}
                 </div>
                 <div>
                     {{ form.submit() }}
