@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from todolist.tasks import blueprint
+from importlib import import_module
 
 db = SQLAlchemy()
 
@@ -10,7 +10,9 @@ def create_app():
 
     db.init_app(app)
 
-    app.register_blueprint(blueprint)
+    for module_name in ("tasks",):
+        module = import_module(f"todolist.{module_name}.routes")
+        app.register_blueprint(module.blueprint)
 
     with app.app_context():
         db.create_all()
