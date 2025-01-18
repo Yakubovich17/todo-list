@@ -9,7 +9,7 @@ def create_app():
     app.config.from_object("todolist.config.Config")
 
     db.init_app(app)
-    
+
     app.register_blueprint(blueprint)
 
     with app.app_context():
