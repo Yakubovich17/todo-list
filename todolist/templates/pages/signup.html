@@ -1,0 +1,46 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Sign Up {% endblock %}
+
+{%block content %}
+
+<section>
+    <div>
+        <div>
+            <form method="post" action="{{ url_for('auth.signup') }}">
+                
+                {{ form.hidden_tag() }}
+                
+                <div>
+                    {{ form.username.label() }}
+                    {{ form.username() }}
+                </div>
+                <div>
+                    {{ form.email.label() }}
+                    {{ form.email() }}
+                </div>
+                <div>
+                    {{ form.password.label() }}
+                    {{ form.password(type="password") }}
+                </div>
+                <div>
+                    {{ form.confirm_password.label() }}
+                    {{ form.confirm_password(type="password") }}
+                </div>
+                <div>
+                    {{ form.invite_code.label() }}
+                    {{ form.invite_code() }}
+                </div>
+                <div>
+                    {{ form.submit() }}
+                </div>
+            </form>
+        </div>
+        <div>
+            <small>Have an Account?</small>
+            <a href="{{ url_for('auth.signin') }}">Sign In</a>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
