@@ -21,8 +21,3 @@ class User(db.Model, UserMixin):
 @login_manager.user_loader
 def user_loader(id):
     return User.query.filter_by(id=id).first()
-
-@login_manager.request_loader
-def request_loader(request):
-    user = User.query.filter_by(username=request.form.get("username")).first()
-    return user if user else None
