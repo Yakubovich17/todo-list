@@ -10,7 +10,7 @@ def create_app():
 
     db.init_app(app)
 
-    for module_name in ("tasks",):
+    for module_name in ("tasks", "main"):
         module = import_module(f"todolist.{module_name}.routes")
         app.register_blueprint(module.blueprint)
 
