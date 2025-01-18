@@ -1,7 +1,7 @@
 import os
 
 from flask import redirect, url_for, request, render_template
-from flask_login.utils import login_required, login_user, logout_user, current_user
+from flask_login.utils import login_user, logout_user, current_user
 
 from todolist import db
 from todolist.auth import blueprint
