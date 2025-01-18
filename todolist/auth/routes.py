@@ -1,6 +1,7 @@
 import os
 
 from flask import redirect, url_for, request, render_template
+from flask_login.utils import login_required, login_user, logout_user, current_user
 
 from todolist import db
 from todolist.auth import blueprint
@@ -10,6 +11,9 @@ from todolist.auth.utils import secure_password, verify_password
 
 @blueprint.route("/signin", methods=["GET", "POST"])
 def signin():
+    if current_user.is_authenticated:
+        return redirect(url_for("main.index"))
+
     form = SignInForm(request.form)
 
     if request.method == "GET":
@@ -27,10 +31,15 @@ def signin():
     if not user or not verify_password(user.password, password):
         return render_template("pages/signin.html", form=form, msg="Invalid username or password")
 
+    login_user(user)
+
     return redirect(url_for("main.index"))
 
 @blueprint.route("/signup", methods=["GET", "POST"])
 def signup():
+    if current_user.is_authenticated:
+        return redirect(url_for("main.index"))
+
     form = SignUpForm(request.form)
 
     if request.method == "GET":
@@ -54,7 +63,16 @@ def signup():
     if invite_code != os.environ.get("INVITE_CODE"):
         return render_template("pages/signup.html", form=form, msg="Invite code is not valid")
 
-    db.session.add(User(username, email, secure_password(password)))
+    user = User(username, email, secure_password(password))
+
+    db.session.add(user)
     db.session.commit()
 
+    login_user(user)
+
+    return redirect(url_for("main.index"))
+
+@blueprint.route("/signout")
+def signout():
+    logout_user()
     return redirect(url_for("main.index"))
