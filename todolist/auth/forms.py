@@ -3,8 +3,8 @@ from wtforms import StringField, SubmitField, PasswordField, EmailField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 
 class SignInForm(FlaskForm):
-    username = StringField("Username", validators=[DataRequired()])
-    password = PasswordField("Password", validators=[DataRequired()])
+    username = StringField("Username", validators=[DataRequired(), Length(min=5, max=64)])
+    password = PasswordField("Password", validators=[DataRequired(), Length(min=8)])
     submit = SubmitField("Sign In")
 
 class SignUpForm(FlaskForm):
