@@ -5,6 +5,24 @@
 {% block content %}
 <h1>Welcome, {{ current_user.username }}</h1>
 
+<div>
+    <form method="post" action="{{ url_for('tasks.create_task') }}">
+        {{ form.hidden_tag() }}
+        
+        <h4>Create Task</h4>
+        
+        <div>
+            {{ form.title(placeholder="New Task") }}
+        </div>
+        <div>
+            {{ form.description(placeholder="Task Description") }}
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+</div>
+
 {% for task in tasks %}
     <div>
         <h3>{{ task.title }}</h3>
