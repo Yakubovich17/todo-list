@@ -33,7 +33,7 @@ def signin():
 
     login_user(user)
 
-    return redirect(url_for("main.index"))
+    return redirect(url_for("tasks.profile"))
 
 @blueprint.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -70,7 +70,7 @@ def signup():
 
     login_user(user)
 
-    return redirect(url_for("main.index"))
+    return redirect(url_for("tasks.profile"))
 
 @blueprint.route("/signout")
 def signout():
