@@ -1,6 +1,7 @@
 from flask_login import UserMixin
 
 from todolist import db, login_manager
+from todolist.tasks.models import Task
 
 class User(db.Model, UserMixin):
     __tablename__ = "users"
@@ -9,6 +10,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(64), unique=True)
     email = db.Column(db.String(64), unique=True)
     password = db.Column(db.LargeBinary)
+    tasks = db.relationship(Task, backref="user")
 
     def __init__(self, username, email, password):
         self.username = username
