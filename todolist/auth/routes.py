@@ -3,7 +3,7 @@ import os
 from flask import redirect, url_for, request, render_template
 from flask_login.utils import login_user, logout_user, current_user
 
-from todolist import db
+from todolist import db, login_manager
 from todolist.auth import blueprint
 from todolist.auth.forms import SignUpForm, SignInForm
 from todolist.auth.models import User
@@ -76,3 +76,7 @@ def signup():
 def signout():
     logout_user()
     return redirect(url_for("main.index"))
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    return redirect(url_for("auth.signin"))
