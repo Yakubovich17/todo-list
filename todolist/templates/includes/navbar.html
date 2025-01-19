@@ -2,6 +2,7 @@
     <div>
         <a href="{{ url_for('main.index') }}">Homepage</a>
         {% if current_user.is_authenticated %}
+            <a href="{{ url_for('tasks.profile') }}">My Profile</a>
             <a href="{{ url_for('auth.signout') }}">Sign Out</a>
         {% else %}
             <a href="{{ url_for('auth.signin') }}">Sign In</a>
