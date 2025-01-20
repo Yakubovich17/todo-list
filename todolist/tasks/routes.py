@@ -1,4 +1,4 @@
-from flask import render_template, request, url_for, redirect
+from flask import jsonify, render_template, request, url_for, redirect
 from flask_login.utils import login_required, current_user
 
 from todolist import db
@@ -35,3 +35,19 @@ def create_task():
     db.session.commit()
 
     return redirect(url_for("tasks.profile"))
+
+@blueprint.route("/tasks/<int:task_id>", methods=["DELETE"])
+@login_required
+def delete_task(task_id):
+    task = Task.query.get(task_id)
+
+    if not task:
+        return jsonify({"message": "Task not found"}), 404
+
+    if task.user_id != current_user.id:
+        return jsonify({"message": "Forbidden"}), 403
+
+    db.session.delete(task)
+    db.session.commit()
+
+    return jsonify({"message": "Success"}), 200

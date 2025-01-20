@@ -23,18 +23,22 @@
     </form>
 </div>
 
-<div classs="container">
+<div class="container">
     {% for row in rows %}
     <div class="row">
         {% for task in row %}
-        <div class="col-md-3 mb-4">
+        <div class="col-md-3 mb-4" id="task-{{ task.id }}">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{ task.title }}</h5>
                     <p class="card-text">{{ task.description }}</p>
                     <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></button>
-                    <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                    <button type="button" class="btn btn-sm btn-primary">
+                        <i class="fa fa-edit"></i>
+                    </button>
+                    <button hx-delete="/tasks/{{ task.id }}" hx-swap="delete" hx-target="#task-{{ task.id }}" type="button" class="btn btn-sm btn-danger">
+                        <i class="fa fa-trash"></i>
+                    </button>
                     </div>
                 </div>
             </div>
