@@ -1,6 +1,4 @@
-import os
-
-from flask import redirect, url_for, request, render_template
+from flask import redirect, url_for, request, render_template, current_app
 from flask_login.utils import login_user, logout_user, current_user
 
 from todolist import db, login_manager
@@ -60,7 +58,7 @@ def signup():
     if User.query.filter_by(email=email).first():
         return render_template("pages/signup.html", form=form, msg="Email already registered")
 
-    if invite_code != os.environ.get("INVITE_CODE"):
+    if invite_code != current_app.config["INVITE_CODE"]:
         return render_template("pages/signup.html", form=form, msg="Invite code is not valid")
 
     user = User(username, email, secure_password(password))

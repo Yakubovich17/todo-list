@@ -3,12 +3,14 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from importlib import import_module
 
+from todolist.config import Config
+
 db = SQLAlchemy()
 login_manager = LoginManager()
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object("todolist.config.Config")
+    app.config.from_object(Config)
 
     db.init_app(app)
     login_manager.init_app(app)
