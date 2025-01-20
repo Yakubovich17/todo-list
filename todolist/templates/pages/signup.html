@@ -1,46 +1,47 @@
-{% extends "layouts/base.html" %}
-
-{% block title %} Sign Up {% endblock %}
-
+{% extends "layouts/base-auth.html" %} {% block title %} Sign Up {% endblock %}
 {% block content %}
 
-<section>
-    <div>
-        <div>
-            <form method="post" action="{{ url_for('auth.signup') }}">
-                {{ form.hidden_tag() }}
-                
-                <h4>Sign Up</h4>
-                
-                {% if msg %}
-                    <span>{{ msg }}</span>
-                {% endif %}
-                
-                <div>
-                    {{ form.username(placeholder=form.username.label.text) }}
-                </div>
-                <div>
-                    {{ form.email(placeholder=form.email.label.text) }}
-                </div>
-                <div>
-                    {{ form.password(placeholder=form.password.label.text) }}
-                </div>
-                <div>
-                    {{ form.confirm_password(placeholder=form.confirm_password.label.text) }}
-                </div>
-                <div>
-                    {{ form.invite_code(placeholder=form.invite_code.label.text) }}
-                </div>
-                <div>
-                    {{ form.submit() }}
-                </div>
-            </form>
+<main class="w-100 m-auto" style="max-width: 320px; padding: 1rem">
+    <form method="post" action="{{ url_for('auth.signup') }}">
+        {{ form.hidden_tag() }}
+
+        <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
+
+        {% if msg %}
+        <span>{{ msg }}</span>
+        {% endif %}
+
+        <div class="form-floating">
+            {{ form.username(id="usernameInput", class="form-control",
+            placeholder="Username") }}
+            <label for="usernameInput">Username</label>
         </div>
+        <div class="form-floating">
+            {{ form.email(id="emailInput", class="form-control",
+            placeholder="Email") }}
+            <label for="emailInput">Email</label>
+        </div>
+        <div class="form-floating">
+            {{ form.password(id="passwordInput", class="form-control",
+            placeholder="Password") }}
+            <label for="passwordInput">Password</label>
+        </div>
+        <div class="form-floating">
+            {{ form.confirm_password(id="confirmPasswordInput",
+            class="form-control", placeholder="Confirm Password") }}
+            <label for="confirmPasswordInput">Confirm Password</label>
+        </div>
+        <div class="form-floating">
+            {{ form.invite_code(id="inviteCodeInput", class="form-control",
+            placeholder="Invite Code") }}
+            <label for="inviteCodeInput">Invite Code</label>
+        </div>
+        {{ form.submit(class="btn btn-primary w-100 py-2 mt-3") }}
         <div>
             <small>Have an Account?</small>
             <a href="{{ url_for('auth.signin') }}">Sign In</a>
         </div>
-    </div>
-</section>
+    </form>
+</main>
 
 {% endblock content %}
