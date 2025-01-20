@@ -16,6 +16,7 @@ def profile():
     return render_template("pages/profile.html", rows=rows, form=form)
 
 @blueprint.route("/tasks", methods=["POST"])
+@login_required
 def create_task():
     form = TaskCreateForm(request.form)
 
