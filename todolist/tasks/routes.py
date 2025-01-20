@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, url_for, redirect
 from flask_login.utils import login_required, current_user
 
 from todolist import db
@@ -11,7 +11,9 @@ from todolist.tasks.forms import TaskCreateForm
 def profile():
     form = TaskCreateForm()
 
-    return render_template("pages/profile.html", tasks=current_user.tasks, form=form)
+    tasks = current_user.tasks
+    rows = [tasks[i:i + 4] for i in range(0, len(tasks), 4)]
+    return render_template("pages/profile.html", rows=rows, form=form)
 
 @blueprint.route("/tasks", methods=["POST"])
 def create_task():
@@ -31,4 +33,4 @@ def create_task():
     db.session.add(task)
     db.session.commit()
 
-    return render_template("pages/profile.html", tasks=current_user.tasks, form=form)
+    return redirect(url_for("tasks.profile"))
