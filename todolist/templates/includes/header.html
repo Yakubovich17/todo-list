@@ -5,9 +5,9 @@
                 <i class="fa-solid fa-list-check bi me-2"></i>
             </a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a class="nav-link px-2 text-white" href="{{ url_for('main.index') }}">Home</a></li>
-                <li><a class="nav-link px-2 text-white" href="{{ url_for('main.index') }}">About Us</a></li>
-                <li><a class="nav-link px-2 text-white" href="{{ url_for('main.index') }}">Contacts</a></li>
+                <li><a class="nav-link px-2 {% if current_page == 'home' %}link-secondary{% else %}link-body-emphasis{% endif %}" href="{{ url_for('main.index') }}">Home</a></li>
+                <li><a class="nav-link px-2 {% if current_page == 'about' %}link-secondary{% else %}link-body-emphasis{% endif %}" href="{{ url_for('main.about') }}">About Us</a></li>
+                <li><a class="nav-link px-2 {% if current_page == 'contact' %}link-secondary{% else %}link-body-emphasis{% endif %}" href="{{ url_for('main.contact') }}">Contact</a></li>
             </ul>
             <div class="text-end">
                 {% if current_user.is_authenticated %}
