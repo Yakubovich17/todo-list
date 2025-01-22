@@ -3,25 +3,40 @@
 {% block title %} My Profile {% endblock %}
 
 {% block content %}
-<h1>Welcome, {{ current_user.username }}</h1>
+<h1>Hello {{ current_user.username }}</h1>
 
-<div>
-    <form method="post" action="{{ url_for('tasks.create_task') }}">
-        {{ form.hidden_tag() }}
-        
-        <h4>Create Task</h4>
-        
-        <div>
-            {{ form.title(placeholder="New Task") }}
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createTaskModal">New Task</button>
+
+<div class="modal fade" id="createTaskModal" tabindex="-1" aria-labelledby="createTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">New Task</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="createTaskForm" method="post" action="{{ url_for('tasks.create_task') }}">
+                    {{ form.hidden_tag() }}
+                    
+                    <div class="mb-3">
+                        <label for="createTaskFormTitle" class="fs-5">Title</label>
+                        {{ form.title(id="createTaskFormTitle", class="form-control") }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="createTaskFormDescription" class="fs-5">Description</label>
+                        {{ form.description(id="createTaskFormDescription", class="form-control") }}
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                {{ form.submit(id="createTaskFormSubmit", class="btn btn-primary") }}
+            </div>
         </div>
-        <div>
-            {{ form.description(placeholder="Task Description") }}
-        </div>
-        <div>
-            {{ form.submit() }}
-        </div>
-    </form>
+    </div>
 </div>
+
+<script src="{{ url_for('static', filename='js/task_form.js') }}"></script>
 
 <div class="container">
     {% for row in rows %}
