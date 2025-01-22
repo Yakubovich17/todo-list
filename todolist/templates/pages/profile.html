@@ -42,14 +42,14 @@
     {% for row in rows %}
     <div class="row">
         {% for task in row %}
-        <div class="col-md-3 mb-4" id="task-{{ task.id }}">
+        <div class="col-md-3 mb-4 task" id="task-{{ task.id }}">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">{{ task.title }}</h5>
-                    <p class="card-text">{{ task.description }}</p>
+                    <h5 class="card-title task-title">{{ task.title }}</h5>
+                    <p class="card-text task-description">{{ task.description }}</p>
                     <div class="d-flex justify-content-between align-items-centered">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-primary">
+                            <button type="button" class="btn btn-sm btn-primary task-edit-button">
                                 <i class="fa fa-edit"></i>
                             </button>
                             <button hx-delete="/tasks/{{ task.id }}" hx-swap="delete" hx-target="#task-{{ task.id }}" type="button" class="btn btn-sm btn-danger">
@@ -68,5 +68,7 @@
     </div>
     {% endfor %}
 </div>
+
+<script src="{{ url_for('static', filename='js/task_edit.js') }}"></script>
 
 {% endblock content %}

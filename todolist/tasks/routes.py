@@ -69,3 +69,33 @@ def toggle_task(task_id):
     db.session.commit()
 
     return jsonify({"message": "Success"}), 200
+
+@blueprint.route("/tasks/<int:task_id>", methods=["PUT"])
+@login_required
+def edit_task(task_id):
+    task = Task.query.get(task_id)
+
+    if not task:
+        return jsonify({"message": "Task not found"}), 404
+
+    if task.user_id != current_user.id:
+        return jsonify({"message": "Forbidden"}), 403
+
+    request_data = request.json
+
+    if not request_data:
+        return jsonify({"message": "Bad Request"}), 400
+
+    new_title = request_data["title"]
+    new_description = request_data["description"]
+
+    if not new_title.strip() or not new_description.strip():
+        return jsonify({"message": "Bad Request"}), 400
+
+    task.title = new_title
+    task.description = new_description
+
+    db.session.add(task)
+    db.session.commit()
+
+    return jsonify({"message": "Success"}), 200
