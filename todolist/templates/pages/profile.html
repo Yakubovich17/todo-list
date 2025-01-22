@@ -17,7 +17,7 @@
             <div class="modal-body">
                 <form id="createTaskForm" method="post" action="{{ url_for('tasks.create_task') }}">
                     {{ form.hidden_tag() }}
-                    
+
                     <div class="mb-3">
                         <label for="createTaskFormTitle" class="fs-5">Title</label>
                         {{ form.title(id="createTaskFormTitle", class="form-control") }}
@@ -59,7 +59,7 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="task-{{ task.id }}-checkbox" {{ "checked" if task.completed else "" }} hx-post="/tasks/{{ task.id }}/toggle" hx-trigger="change" hx-swap="none">
                             <label class="form-check-label" for="task-{{ task.id }}-checkbox">Completed</label>
-                        </div>                   
+                        </div>
                     </div>
                 </div>
             </div>
