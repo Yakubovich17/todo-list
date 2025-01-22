@@ -27,8 +27,6 @@ def create_task():
     description = request.form["description"]
     user_id = current_user.id
 
-    print(description)
-
     task = Task(title, description, user_id)
 
     db.session.add(task)
