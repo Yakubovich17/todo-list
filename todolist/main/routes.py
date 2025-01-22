@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, send_from_directory
 
 from todolist.main import blueprint
 
@@ -13,3 +13,7 @@ def about():
 @blueprint.route("/contact")
 def contact():
     return render_template("pages/contact.html", current_page="contact")
+
+@blueprint.route("/favicon.ico")
+def favicon():
+    return send_from_directory("static", "img/favicon.png", mimetype="image/png")
