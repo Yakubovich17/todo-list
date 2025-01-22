@@ -51,3 +51,21 @@ def delete_task(task_id):
     db.session.commit()
 
     return jsonify({"message": "Success"}), 200
+
+@blueprint.route("/tasks/<int:task_id>/toggle", methods=["POST"])
+@login_required
+def toggle_task(task_id):
+    task = Task.query.get(task_id)
+
+    if not task:
+        return jsonify({"message": "Task not found"}), 404
+
+    if task.user_id != current_user.id:
+        return jsonify({"message": "Forbidden"}), 403
+
+    task.completed = not task.completed
+
+    db.session.add(task)
+    db.session.commit()
+
+    return jsonify({"message": "Success"}), 200
