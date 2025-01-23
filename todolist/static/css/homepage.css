@@ -1,0 +1,14 @@
+.hero-background {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.hero-title {
+    font-size: 5.5rem;
+    color: #333;
+}
+
+.hero-subtitle {
+    color: #333;
+}
