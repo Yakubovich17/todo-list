@@ -1,8 +1,8 @@
-<header class="p-3 text-bg-dark border-bottom">
+<header class="p-3 text-bg-dark border-bottom bg-light-subtle">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none" href="{{ url_for('main.index') }}">
-                <i class="fa-solid fa-list-check bi me-2"></i>
+                <i class="fa-solid fa-list-check fa-xl bi me-2"></i>
             </a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a class="nav-link px-2 {% if current_page == 'home' %}link-secondary{% else %}link-body-emphasis{% endif %}" href="{{ url_for('main.index') }}">Home</a></li>
