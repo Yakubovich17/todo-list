@@ -12,27 +12,27 @@
         <span class="text-danger">{{ msg }}</span>
         {% endif %}
 
-        <div class="form-floating">
+        <div class="form-floating mb-2">
             {{ form.username(id="usernameInput", class="form-control",
             placeholder="Username") }}
             <label for="usernameInput">Username</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-2">
             {{ form.email(id="emailInput", class="form-control",
             placeholder="Email") }}
             <label for="emailInput">Email</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-2">
             {{ form.password(id="passwordInput", class="form-control",
             placeholder="Password") }}
             <label for="passwordInput">Password</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-2">
             {{ form.confirm_password(id="confirmPasswordInput",
             class="form-control", placeholder="Confirm Password") }}
             <label for="confirmPasswordInput">Confirm Password</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-2">
             {{ form.invite_code(id="inviteCodeInput", class="form-control",
             placeholder="Invite Code") }}
             <label for="inviteCodeInput">Invite Code</label>

@@ -14,11 +14,11 @@
             <span class="text-danger">{{ msg }}</span>
         {% endif %}
         
-        <div class="form-floating">
+        <div class="form-floating mb-2">
             {{ form.username(id="usernameInput", class="form-control", placeholder="Username") }}
             <label for="usernameInput">Username</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-2">
             {{ form.password(id="passwordInput", class="form-control", placeholder="Password") }}
             <label for="passwordInput">Password</label>
         </div>
@@ -28,7 +28,6 @@
             <a href="{{ url_for('auth.signup') }}">Sign Up</a>
         </div>
     </form>
-
 </main>
 
 {% endblock content %}
