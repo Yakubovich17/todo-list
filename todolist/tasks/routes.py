@@ -21,7 +21,7 @@ def create_task():
     form = TaskCreateForm(request.form)
 
     if not form.validate_on_submit():
-        return render_template("pages/profile.html", tasks=current_user.tasks, form=form)
+        return redirect(url_for("tasks.profile"))
 
     title = request.form["title"]
     description = request.form["description"]
