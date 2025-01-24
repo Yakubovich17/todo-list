@@ -42,7 +42,7 @@
     <div class="row">
         {% for task in row %}
         <div class="col-md-3 mb-4 task" id="task-{{ task.id }}">
-            <div class="card bg-light-subtle rounded-3 shadow">
+            <div class="card bg-light-subtle rounded-3 shadow {{ 'border-success' if task.completed else '' }}">
                 <div class="card-body">
                     <h2 class="card-title task-title">{{ task.title }}</h2>
                     <p class="card-text task-description">{{ task.description }}</p>

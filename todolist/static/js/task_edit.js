@@ -7,6 +7,13 @@ tasks.forEach((task) => {
   const editButton = task.querySelector(".task-edit-button");
   const title = task.querySelector(".task-title");
   const description = task.querySelector(".task-description");
+  const checkbox = task.querySelector(".form-check-input");
+  const border = task.querySelector(".card");
+  
+  checkbox.addEventListener("click", () => {
+    if (checkbox.checked) border.classList.add("border-success")
+      else border.classList.remove("border-success");
+  });
 
   editButton.addEventListener("click", () => {
     if (editButton.classList.contains("edit-mode")) {
