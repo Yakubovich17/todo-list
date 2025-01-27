@@ -6,14 +6,14 @@ from todolist.tasks import blueprint
 from todolist.tasks.models import Task
 from todolist.tasks.forms import TaskCreateForm
 
-@blueprint.route("/profile")
+@blueprint.route("/dashboard")
 @login_required
-def profile():
+def dashboard():
     form = TaskCreateForm()
 
     tasks = current_user.tasks
     rows = [tasks[i:i + 4] for i in range(0, len(tasks), 4)]
-    return render_template("pages/profile.html", rows=rows, form=form)
+    return render_template("pages/dashboard.html", rows=rows, form=form)
 
 @blueprint.route("/tasks", methods=["POST"])
 @login_required
@@ -21,7 +21,7 @@ def create_task():
     form = TaskCreateForm(request.form)
 
     if not form.validate_on_submit():
-        return redirect(url_for("tasks.profile"))
+        return redirect(url_for("tasks.dashboard"))
 
     title = request.form["title"]
     description = request.form["description"]
@@ -32,7 +32,7 @@ def create_task():
     db.session.add(task)
     db.session.commit()
 
-    return redirect(url_for("tasks.profile"))
+    return redirect(url_for("tasks.dashboard"))
 
 @blueprint.route("/tasks/<int:task_id>", methods=["DELETE"])
 @login_required

@@ -12,7 +12,7 @@
         <div class="container hero-content text-center">
             <h1 class="hero-title fw-bold">Stay orgaized, Achieve More</h1>
             <p class="hero-subtitle fs-3">Easily manage your tasks and boost productivity with our intuitive <span class="text-decoration-underline">To-Do</span> list application.</p>
-            <a href="{{ url_for('tasks.profile') if current_user.is_authenticated else url_for('auth.signup') }}" class="btn btn-primary btn-lg hero-cta"><i class="fa-solid fa-rocket"></i> Get Started</a>
+            <a href="{{ url_for('tasks.dashboard') if current_user.is_authenticated else url_for('auth.signup') }}" class="btn btn-primary btn-lg hero-cta"><i class="fa-solid fa-rocket"></i> Get Started</a>
         </div>
     </div>
 </section>
