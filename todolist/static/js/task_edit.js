@@ -11,8 +11,8 @@ tasks.forEach((task) => {
   const border = task.querySelector(".card");
   
   checkbox.addEventListener("click", () => {
-    if (checkbox.checked) border.classList.add("border-success")
-      else border.classList.remove("border-success");
+    if (checkbox.checked) border.classList.add("border-success", "border-3")
+      else border.classList.remove("border-success", "border-2");
   });
 
   editButton.addEventListener("click", () => {

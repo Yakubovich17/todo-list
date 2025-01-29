@@ -26,8 +26,9 @@ def create_task():
     title = request.form["title"]
     description = request.form["description"]
     user_id = current_user.id
+    color = request.form["color"]
 
-    task = Task(title, description, user_id)
+    task = Task(title, description, user_id, color)
 
     db.session.add(task)
     db.session.commit()
