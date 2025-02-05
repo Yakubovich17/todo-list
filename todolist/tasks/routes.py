@@ -11,7 +11,7 @@ from todolist.tasks.forms import TaskCreateForm
 def dashboard():
     form = TaskCreateForm()
 
-    tasks = current_user.tasks
+    tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.id).all()
     rows = [tasks[i:i + 4] for i in range(0, len(tasks), 4)]
     return render_template("pages/dashboard.html", rows=rows, form=form)
 
